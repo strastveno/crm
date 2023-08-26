@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\KlijentController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::apiResource('klijents', KlijentController::class)->only([
+    'index', 'store', 'update', 'destroy'
+]);
+
+Route::apiResource('tasks', TaskController::class)->only([
+    'index', 'store', 'update', 'destroy'
+]);
+
+Route::apiResource('prodajne-prilike', ProdajnaPrilikaController::class)->only([
+    'index', 'store', 'update', 'destroy'
+]);
