@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KlijentController;
+use App\Http\Controllers\ProdajnaPrilikaController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +29,8 @@ Route::apiResource('tasks', TaskController::class)->only([
 Route::apiResource('prodajne-prilike', ProdajnaPrilikaController::class)->only([
     'index', 'store', 'update', 'destroy'
 ]);
+
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
