@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Klijent;
 use Illuminate\Database\Seeder;
 
 class KlijentSeeder extends Seeder
@@ -13,6 +14,6 @@ class KlijentSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Klijent::factory(10)->create();
     }
 }

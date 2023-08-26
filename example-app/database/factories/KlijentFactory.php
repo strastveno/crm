@@ -11,7 +11,7 @@ class KlijentFactory extends Factory
      *
      * @return array
      */
-    protected $model = Klijent::class;
+ 
     public function definition()
     {
         return [
