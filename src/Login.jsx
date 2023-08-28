@@ -15,6 +15,8 @@ const Login = ({setToken}) => {
 
             if (response.status === 200) {
             sessionStorage.setItem("auth_token",response.data.token)
+            sessionStorage.setItem("id",response.data.id)
+
             setToken(response.data.token)
                 
                 navigate('/klijenti');

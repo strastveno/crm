@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Klijenti from './Klijenti';
 import axios from 'axios';
 import Dodaj from './Dodaj';
+import Tasks from './Tasks';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -31,6 +32,26 @@ function App() {
 
       fetchData();
   }, []);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const authToken = sessionStorage.getItem('auth_token');
+              const response = await axios.get('http://127.0.0.1:8000/api/tasks', {
+                  headers: {
+                      'Authorization': `Bearer ${authToken}`
+                  }
+              });
+              setTasks(response.data);
+              console.log(response.data)
+          } catch (error) {
+              console.error("Greška prilikom dohvatanja klijenata:", error);
+          }
+      };
+
+      fetchData();
+  }, []);
     return (
         <Router>
             <div className="App">
@@ -38,6 +59,7 @@ function App() {
               <Routes>
                     <Route path="/register" element={ <RegisterComponent />}> </Route>
                     <Route path="/klijenti" element={ <Klijenti klijenti={klijenti} setKlijenti={setKlijenti}/>}> </Route>
+                    <Route path="/tasks" element={ <Tasks tasks={tasks} setTasks={setTasks} />}> </Route>
                        
                
                     <Route path="/dodaj" element={ <Dodaj setKlijenti={setKlijenti}/>}></Route>
