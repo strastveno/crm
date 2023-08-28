@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useRef  } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 function Klijenti({ klijenti, setKlijenti }) {
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -25,11 +26,24 @@ function Klijenti({ klijenti, setKlijenti }) {
             console.error("Greška prilikom brisanja klijenta:", error);
         }
     }
- 
+    const tableRef = useRef(null);  
+
+    const handlePDFExport = () => {
+        const input = tableRef.current;
+
+        html2canvas(input)
+            .then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, 'PNG', 10, 10);
+                pdf.save("klijenti.pdf");
+            });
+    }
     return (
         <div className="klijenti-container">
              <div className="actions-container">
                 <Link to="/dodaj" className="dodaj-btn">Dodaj</Link>
+                <button className="dodaj-btn" onClick={handlePDFExport}>Izvoz u PDF</button>
             </div>
             <div className="search-container">
                 <input 
@@ -39,7 +53,7 @@ function Klijenti({ klijenti, setKlijenti }) {
                     onChange={e => setSearchTerm(e.target.value)} 
                 />
             </div>
-            <table>
+            <table  ref={tableRef}>
                 <thead>
                     <tr>
                         <th>ID</th>
