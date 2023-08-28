@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthController; 
 use App\Http\Controllers\KlijentController;
 use App\Http\Controllers\ProdajnaPrilikaController;
 use App\Http\Controllers\TaskController;
@@ -38,3 +38,4 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 
 
 
+ 

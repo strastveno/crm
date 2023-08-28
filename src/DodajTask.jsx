@@ -15,8 +15,7 @@ function DodajTask({ users }) {
             headers: {
                 'Authorization': `Bearer ${authToken}`
             }
-        };
-
+        }; 
         const payload = {
             description,
             due_date: dueDate,

@@ -25,7 +25,7 @@ function Klijenti({ klijenti, setKlijenti }) {
             console.error("Greška prilikom brisanja klijenta:", error);
         }
     }
-
+ 
     return (
         <div className="klijenti-container">
              <div className="actions-container">
@@ -60,7 +60,10 @@ function Klijenti({ klijenti, setKlijenti }) {
                             <td>{klijent.address}</td>
                             <td>
                                 <button onClick={() => handleDelete(klijent.id)}>Obriši</button>
+                               
                             </td>
+                             
+                           
                         </tr>
                     ))}
                 </tbody>
