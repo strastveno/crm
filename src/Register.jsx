@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
- 
-const Login = () => {
+import {   useNavigate } from 'react-router-dom'; 
+
+const RegisterComponent = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -11,23 +12,28 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/login', { email, password });
-
-            if (response.status === 200) {
-               
-                
-                navigate('/klijenti');
+            const response = await axios.post('http://127.0.0.1:8000/api/register', { name, email, password });
+            console.log(response);
+            if (response.status === 201) {
+                navigate('/login');  
             } else {
-                console.error("Error prilikom prijave:", response.data);
+                console.error("Error prilikom registracije:", response.data);
             }
         } catch (error) {
-            console.error("Greška prilikom prijave:", error);
+            console.error("Greška prilikom registracije:", error);
         }
     };
 
     return (
-        <div className="login-container">
+        <div className="register-container">
             <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Ime"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
                 <input
                     type="email"
                     placeholder="Email"
@@ -42,10 +48,10 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Prijava</button>
+                <button type="submit">Registracija</button>
             </form>
         </div>
     );
 }
 
-export default Login;
+export default RegisterComponent;

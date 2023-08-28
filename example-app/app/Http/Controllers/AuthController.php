@@ -14,15 +14,15 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
-            'role' => 'required|string'
+            'password' => 'required|string',
+            
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role
+            'role' => 'user'
         ]);
 
         $token = $user->createToken('app_token')->plainTextToken;
@@ -32,7 +32,8 @@ class AuthController extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'role' => $user->role,
-            'token' => $token
+            'token' => $token,
+            'status'=>200
         ], 201);
     }
 
@@ -58,7 +59,8 @@ class AuthController extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'role' => $user->role,
-            'token' => $token
+            'token' => $token,
+            'status'=>200
         ]);
     }
 
