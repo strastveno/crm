@@ -171,3 +171,84 @@ th {
 tr:hover {
   background-color: #f5f5f5;
 }
+
+.actions-container {
+  margin-bottom: 15px;
+}
+
+.dodaj-btn {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+      background-color: #0056b3;
+  }
+}
+
+/* Dodaj.css */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2C3E50;
+  text-align: center;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ECF0F1;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #34495E;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #BDC3C7;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #7F8C8D;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #3498DB;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #3498DB;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980B9;
+}

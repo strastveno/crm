@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Klijenti({ klijenti }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,6 +13,9 @@ function Klijenti({ klijenti }) {
 
     return (
         <div className="klijenti-container">
+             <div className="actions-container">
+                <Link to="/dodaj" className="dodaj-btn">Dodaj</Link>
+            </div>
             <div className="search-container">
                 <input 
                     type="text" 

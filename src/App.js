@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import { useEffect, useState } from 'react';
 import Klijenti from './Klijenti';
 import axios from 'axios';
+import Dodaj from './Dodaj';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -39,6 +40,7 @@ function App() {
                     <Route path="/klijenti" element={ <Klijenti klijenti={klijenti} />}> </Route>
                        
                
+                    <Route path="/dodaj" element={ <Dodaj setKlijenti={setKlijenti}/>}></Route>
                
                     <Route path="/login" element={ <Login setToken={setToken}/>}></Route>
                        
