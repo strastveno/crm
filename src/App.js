@@ -37,7 +37,7 @@ function App() {
               <Navbar token={token} setToken={setToken}> </Navbar>
               <Routes>
                     <Route path="/register" element={ <RegisterComponent />}> </Route>
-                    <Route path="/klijenti" element={ <Klijenti klijenti={klijenti} />}> </Route>
+                    <Route path="/klijenti" element={ <Klijenti klijenti={klijenti} setKlijenti={setKlijenti}/>}> </Route>
                        
                
                     <Route path="/dodaj" element={ <Dodaj setKlijenti={setKlijenti}/>}></Route>

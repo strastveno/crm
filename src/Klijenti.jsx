@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Klijenti({ klijenti }) {
+function Klijenti({ klijenti, setKlijenti }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredKlijenti = klijenti.filter(klijent => 
@@ -10,6 +11,20 @@ function Klijenti({ klijenti }) {
         klijent.phone.includes(searchTerm) ||
         klijent.address.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const handleDelete = async (id) => {
+        try {
+            const authToken = sessionStorage.getItem('auth_token');
+            await axios.delete(`http://127.0.0.1:8000/api/klijents/${id}`, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            setKlijenti(prevKlijenti => prevKlijenti.filter(klijent => klijent.id !== id));
+        } catch (error) {
+            console.error("Greška prilikom brisanja klijenta:", error);
+        }
+    }
 
     return (
         <div className="klijenti-container">
@@ -32,6 +47,7 @@ function Klijenti({ klijenti }) {
                         <th>Email</th>
                         <th>Telefon</th>
                         <th>Adresa</th>
+                        <th>Akcije</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +58,9 @@ function Klijenti({ klijenti }) {
                             <td>{klijent.email}</td>
                             <td>{klijent.phone}</td>
                             <td>{klijent.address}</td>
+                            <td>
+                                <button onClick={() => handleDelete(klijent.id)}>Obriši</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
