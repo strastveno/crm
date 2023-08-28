@@ -1,6 +1,31 @@
-import React from 'react'; 
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'; 
 
 const Pocetna = () => {
+    const [images, setImages] = useState([]);
+    const ACCESS_KEY = 'AYoD1RB6ATmNpK69MpZK7lqW5fFyqTUtrHFhEZW7o1k';  
+    
+    useEffect(() => {
+      const fetchImages = async () => {
+        try {
+          const response = await axios.get('https://api.unsplash.com/search/photos', {
+            params: {
+              query: 'office',
+              per_page: 3,
+            },
+            headers: {
+              Authorization: `Client-ID ${ACCESS_KEY}`,
+            },
+          });
+  
+          setImages(response.data.results);
+        } catch (error) {
+          console.error("Greška prilikom dohvaćanja slika:", error);
+        }
+      };
+  
+      fetchImages();
+    }, []); 
     return (
         <div className="crm-container">
             <h1>Šta je CRM?</h1>
@@ -18,6 +43,13 @@ const Pocetna = () => {
             <p>
                 CRM rešenja olakšavaju firmama praćenje i upravljanje interakcijama s klijentima, omogućavajući efikasniju i personalizovaniju komunikaciju.
             </p>
+            <div className="gallery">
+                {images.map(image => (
+                    <div key={image.id} className="image-container">
+                        <img src={image.urls.small} alt={image.description || 'Office Image'} />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
