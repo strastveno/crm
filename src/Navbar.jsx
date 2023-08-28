@@ -40,10 +40,32 @@ function Navbar({token,setToken}) {
                         <Link to="/register">Registruj se</Link>
                     </li>
                 }
-                { token &&
+                { token && window.sessionStorage.getItem("role")=="prodavac" &&
+                    <>
                     <li>
-                        <button onClick={handleLogout}>Odjavi se</button>
+                        <Link to="/tasks">Tasks</Link>
                     </li>
+                    <li>
+                        <Link to="/klijenti">Klijenti</Link>
+                    </li>
+                    <li>
+                        <Link to="/prodajnePrilike">Prodajne prilike</Link>
+                    </li>
+                    <li>
+                        
+                        <button onClick={handleLogout}>Odjavi se</button>
+                    </li></>
+                }
+                { token && window.sessionStorage.getItem("role")=="admin" &&
+                    <>
+                    <li>
+                        <Link to="/dodajTask">Dodaj task</Link>
+                    </li>
+                     
+                    <li>
+                        
+                        <button onClick={handleLogout}>Odjavi se</button>
+                    </li></>
                 }
             </ul>
         </nav>

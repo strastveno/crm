@@ -16,10 +16,16 @@ const Login = ({setToken}) => {
             if (response.status === 200) {
             sessionStorage.setItem("auth_token",response.data.token)
             sessionStorage.setItem("id",response.data.id)
+            sessionStorage.setItem("role",response.data.role)
+
 
             setToken(response.data.token)
+                if(response.data.role=="prodavac"){
+                    navigate('/klijenti');
+                }else{
+                    navigate('/admin')
+                }
                 
-                navigate('/klijenti');
             } else {
                 console.error("Error prilikom prijave:", response.data);
             }

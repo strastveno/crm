@@ -22,7 +22,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'user'
+            'role' => 'prodavac'
         ]);
 
         $token = $user->createToken('app_token')->plainTextToken;
@@ -68,5 +68,9 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Logged out'], 200);
+    }
+
+    public function index(){
+        return User::all();
     }
 }

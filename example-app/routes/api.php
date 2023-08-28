@@ -30,6 +30,7 @@ Route::apiResource('prodajne-prilike', ProdajnaPrilikaController::class)->only([
     'index', 'store', 'update', 'destroy'
 ]);
 
+Route::get('/user', [AuthController::class, 'index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

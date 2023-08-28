@@ -10,6 +10,8 @@ import Klijenti from './Klijenti';
 import axios from 'axios';
 import Dodaj from './Dodaj';
 import Tasks from './Tasks';
+import Admin from './Admin';
+import DodajTask from './DodajTask';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -46,7 +48,27 @@ function App() {
               setTasks(response.data);
               console.log(response.data)
           } catch (error) {
-              console.error("Greška prilikom dohvatanja klijenata:", error);
+              console.error("Greška prilikom dohvatanja taskova:", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const authToken = sessionStorage.getItem('auth_token');
+              const response = await axios.get('http://127.0.0.1:8000/api/user', {
+                  headers: {
+                      'Authorization': `Bearer ${authToken}`
+                  }
+              });
+              setUsers(response.data);
+              console.log(response.data)
+          } catch (error) {
+              console.error("Greška prilikom dohvatanja usera:", error);
           }
       };
 
@@ -65,7 +87,9 @@ function App() {
                     <Route path="/dodaj" element={ <Dodaj setKlijenti={setKlijenti}/>}></Route>
                
                     <Route path="/login" element={ <Login setToken={setToken}/>}></Route>
+                    <Route path="/dodajTask" element={<DodajTask  users={users}/>}> </Route>
                        
+                    <Route path="/admin" element={<Admin />}> </Route>
                 
                     <Route path="/" element={<Pocetna />}> </Route>
                         
