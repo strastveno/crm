@@ -33,20 +33,20 @@ class ProdajnaPrilikaController extends Controller
         return response()->json($prilika, 201);
     }
 
-    public function update(Request $request, ProdajnaPrilika $prilika)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'status' => 'sometimes|required|string',
-            'client_id' => 'sometimes|required|exists:klijents,id',
-            'prodavac_id' => 'sometimes|required|exists:users,id',
-            'napomena' => 'nullable|string',
-            'ocekivaniIznos' => 'sometimes|required|numeric',
+            'status' => 'required|string',
+            'client_id' => 'required|exists:klijents,id',
+            'prodavac_id' => 'required|exists:users,id',
+            'napomena' => 'string',
+            'ocekivaniIznos' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 400);
         }
-
+        $prilika=ProdajnaPrilika::find($id);
         $prilika->update($request->all());
         return response()->json($prilika);
     }

@@ -10,6 +10,7 @@ function Azuriraj({ prilike }) {
         napomena: '',
         ocekivaniIznos: '',
         status: '',
+       
  
     });
 
@@ -20,6 +21,8 @@ function Azuriraj({ prilike }) {
             napomena: currentPrilika?.napomena,
             ocekivaniIznos: currentPrilika?.ocekivaniIznos,
             status: currentPrilika?.status,
+            client_id:currentPrilika?.client.id,
+            prodavac_id:sessionStorage.getItem("id")
     
         });
     }, [prilike, id]);
