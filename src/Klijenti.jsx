@@ -1,10 +1,25 @@
-import React, { useState, useEffect } from 'react';
- 
+import React, { useState } from 'react';
 
-function Klijenti({klijenti}) {
-    
+function Klijenti({ klijenti }) {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredKlijenti = klijenti.filter(klijent => 
+        klijent.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        klijent.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        klijent.phone.includes(searchTerm) ||
+        klijent.address.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="klijenti-container">
+            <div className="search-container">
+                <input 
+                    type="text" 
+                    placeholder="Pretraži klijente..." 
+                    value={searchTerm} 
+                    onChange={e => setSearchTerm(e.target.value)} 
+                />
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -16,7 +31,7 @@ function Klijenti({klijenti}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {klijenti.map(klijent => (
+                    {filteredKlijenti.map(klijent => (
                         <tr key={klijent.id}>
                             <td>{klijent.id}</td>
                             <td>{klijent.name}</td>
