@@ -12,6 +12,7 @@ import Dodaj from './Dodaj';
 import Tasks from './Tasks';
 import Admin from './Admin';
 import DodajTask from './DodajTask';
+import ProdajnaPrilika from './ProdajnaPrilika';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -74,6 +75,26 @@ function App() {
 
       fetchData();
   }, []);
+  const [prodajnePrilike, setProdajnePrilike] = useState([]);
+
+  useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const authToken = sessionStorage.getItem('auth_token');
+              const response = await axios.get('http://127.0.0.1:8000/api/prodajne-prilike', {
+                  headers: {
+                      'Authorization': `Bearer ${authToken}`
+                  }
+              });
+              setProdajnePrilike(response.data);
+              console.log(response.data)
+          } catch (error) {
+              console.error("Greška prilikom dohvatanja usera:", error);
+          }
+      };
+
+      fetchData();
+  }, []);
     return (
         <Router>
             <div className="App">
@@ -88,6 +109,7 @@ function App() {
                
                     <Route path="/login" element={ <Login setToken={setToken}/>}></Route>
                     <Route path="/dodajTask" element={<DodajTask  users={users}/>}> </Route>
+                    <Route path="/prodajnaPrilika" element={<ProdajnaPrilika  prilike={prodajnePrilike}/>}> </Route>
                        
                     <Route path="/admin" element={<Admin />}> </Route>
                 

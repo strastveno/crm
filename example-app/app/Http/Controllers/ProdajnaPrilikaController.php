@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProdajnaPrilikaResource;
 use Illuminate\Http\Request;
 use App\Models\ProdajnaPrilika;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +11,7 @@ class ProdajnaPrilikaController extends Controller
 {
     public function index()
     {
-        $prilike = ProdajnaPrilika::all();
+        $prilike = ProdajnaPrilikaResource::collection(ProdajnaPrilika::all());
         return response()->json($prilike);
     }
 
