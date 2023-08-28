@@ -27,7 +27,11 @@ function Tasks({ tasks, setTasks }) {
       }
     ];
 
-    const rows = tasks.map(task => {
+    const userId = parseInt(sessionStorage.getItem('id'), 10);  
+
+    const filteredTasks = tasks.filter(task => task.user_id === userId);
+
+    const rows = filteredTasks.map(task => {
       return {
         ...task,
         completed: <input type="checkbox" onChange={() => handleCompletion(task.id)} />
@@ -38,7 +42,7 @@ function Tasks({ tasks, setTasks }) {
   }, [tasks]);
 
   const handleCompletion = (id) => {
-    
+     
   };
 
   return (
