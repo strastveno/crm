@@ -409,3 +409,38 @@ ul {
 .azuriraj-container button:hover {
   background-color: #0056b3;
 }
+.admin-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.info-boxes {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.info-box {
+  width: 48%;  
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.info-box span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.info-box strong {
+  font-size: 18px;
+  color: #333;
+}

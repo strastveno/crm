@@ -112,7 +112,7 @@ function App() {
                     <Route path="/dodajTask" element={<DodajTask  users={users}/>}> </Route>
                     <Route path="/prodajnaPrilika" element={<ProdajnaPrilika  prilike={prodajnePrilike}/>}> </Route>
                        
-                    <Route path="/admin" element={<Admin />}> </Route>
+                    <Route path="/admin" element={<Admin prilike={prodajnePrilike} klijenti={klijenti} />}> </Route>
                     <Route path="/azuriraj/:id" element={<Azuriraj prilike={prodajnePrilike} />}></Route>
                     <Route path="/" element={<Pocetna />}> </Route>
                         
