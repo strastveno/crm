@@ -13,6 +13,7 @@ import Tasks from './Tasks';
 import Admin from './Admin';
 import DodajTask from './DodajTask';
 import ProdajnaPrilika from './ProdajnaPrilika';
+import Azuriraj from './Azuriraj';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -112,7 +113,7 @@ function App() {
                     <Route path="/prodajnaPrilika" element={<ProdajnaPrilika  prilike={prodajnePrilike}/>}> </Route>
                        
                     <Route path="/admin" element={<Admin />}> </Route>
-                
+                    <Route path="/azuriraj/:id" element={<Azuriraj prilike={prodajnePrilike} />}></Route>
                     <Route path="/" element={<Pocetna />}> </Route>
                         
                    

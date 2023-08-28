@@ -36,6 +36,8 @@ function ProdajnaPrilika({ prilike }) {
                         <th>Ime Klijenta</th>
                         <th>Email Klijenta</th>
                         <th>Adresa Klijenta</th>
+                        <th>Izmeni</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +52,10 @@ function ProdajnaPrilika({ prilike }) {
                             <td>{prilika.client.name}</td>
                             <td>{prilika.client.email}</td>
                             <td>{prilika.client.address}</td>
-                        </tr>
+                            <td>
+                                <a href={`/azuriraj/${prilika.id}`}>Ažuriraj</a>
+                            </td>
+                                        </tr>
                     ))}
                 </tbody>
             </table>

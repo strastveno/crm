@@ -360,3 +360,52 @@ ul {
     display: block; /* Uklanja beli prostor ispod slike */
     object-fit: cover; /* Ovo će obezbediti da slika pokrije celu površinu kontejnera bez izobličenja */
 }
+
+.azuriraj-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.azuriraj-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Razmak između elemenata forme */
+}
+
+.azuriraj-container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.azuriraj-container input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.azuriraj-container input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.azuriraj-container button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.azuriraj-container button:hover {
+  background-color: #0056b3;
+}
