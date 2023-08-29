@@ -39,7 +39,7 @@ function Azuriraj({ prilike }) {
         })
         .then(response => {
             console.log("Prilika je ažurirana:", response.data);
-            navigate('/admin')
+            navigate('/klijenti')
         })
         .catch(error => {
             console.error("Greška prilikom ažuriranja:", error);

@@ -18,24 +18,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Routes that don't require authentication
 Route::apiResource('klijents', KlijentController::class)->only([
-    'index', 'store', 'update', 'destroy'
+    'index'
 ]);
 
 Route::apiResource('tasks', TaskController::class)->only([
-    'index', 'store', 'update', 'destroy'
+    'index'
 ]);
 
 Route::apiResource('prodajne-prilike', ProdajnaPrilikaController::class)->only([
-    'index', 'store', 'update', 'destroy'
+    'index'
 ]);
 
 Route::get('/user', [AuthController::class, 'index']);
-
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
+// Routes that require authentication
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('klijents', KlijentController::class)->except([
+        'index', 'show'
+    ]);
 
+    Route::apiResource('tasks', TaskController::class)->except([
+        'index', 'show'
+    ]);
 
- 
+    Route::apiResource('prodajne-prilike', ProdajnaPrilikaController::class)->except([
+        'index', 'show'
+    ]);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});

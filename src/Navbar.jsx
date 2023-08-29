@@ -49,7 +49,7 @@ function Navbar({token,setToken}) {
                         <Link to="/klijenti">Klijenti</Link>
                     </li>
                     <li>
-                        <Link to="/prodajnePrilike">Prodajne prilike</Link>
+                        <Link to="/prodajnaPrilika">Prodajne prilike</Link>
                     </li>
                     <li>
                         
