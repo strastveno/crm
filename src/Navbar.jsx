@@ -60,6 +60,7 @@ function Navbar({token,setToken}) {
                     <>
                     <li>
                         <Link to="/dodajTask">Dodaj task</Link>
+                        <Link to="/admin">Admin</Link>
                     </li>
                      
                     <li>
