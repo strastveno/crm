@@ -20,10 +20,7 @@ function Tasks({ tasks, setTasks }) {
       {
         label: 'Rok',
         field: 'due_date'
-      },
-      {
-        label: 'Završeno',
-        field: 'completed'
+      
       }
     ];
 
@@ -33,8 +30,7 @@ function Tasks({ tasks, setTasks }) {
 
     const rows = filteredTasks.map(task => {
       return {
-        ...task,
-        completed: <input type="checkbox" onChange={() => handleCompletion(task.id)} />
+        ...task
       };
     });
 

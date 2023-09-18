@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 function ProdajnaPrilika({ prilike }) {
     const [filteredPrilike, setFilteredPrilike] = useState([]);
     const [conversionRates, setConversionRates] = useState({});
-
+    const navigate = useNavigate();
     useEffect(() => {
    
         axios.get('https://api.exchangerate-api.com/v4/latest/USD')
@@ -21,9 +21,12 @@ function ProdajnaPrilika({ prilike }) {
         const filtriranePrilike = prilike.filter(prilika => prilika.prodavac_id === Number(prodavacId));
         setFilteredPrilike(filtriranePrilike);
     }, [prilike]);
-
+    const handleDodajClick = () => {
+        navigate('/dodajPP'); // Navigacija na /dodaj
+    };
     return (
         <div className="prodajna-prilika-container">
+             <button onClick={handleDodajClick}>Dodaj</button> {/* Dodano dugme */}
             <table>
                 <thead>
                     <tr>

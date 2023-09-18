@@ -14,6 +14,7 @@ import Admin from './Admin';
 import DodajTask from './DodajTask';
 import ProdajnaPrilika from './ProdajnaPrilika';
 import Azuriraj from './Azuriraj';
+import DodajPP from './DodajPP';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -105,6 +106,7 @@ function App() {
                     <Route path="/klijenti" element={ <Klijenti klijenti={klijenti} setKlijenti={setKlijenti}/>}> </Route>
                     <Route path="/tasks" element={ <Tasks tasks={tasks} setTasks={setTasks} />}> </Route>
                        
+                    <Route path="/dodajPP" element={ <DodajPP   setProdajnePrilike={setProdajnePrilike} prodajnePrilike={prodajnePrilike}/>}></Route>
                
                     <Route path="/dodaj" element={ <Dodaj setKlijenti={setKlijenti}/>}></Route>
                
